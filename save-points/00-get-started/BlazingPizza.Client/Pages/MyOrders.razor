@@ -1,7 +1,8 @@
 ﻿@page "/myorders"
 @using System.Runtime.InteropServices
-@inject HttpClient HttpClient
+@inject OrdersClient OrdersClient
 
+@attribute [Authorize]
 
 <div class="main">
     @if (ordersWithStatus == null)
@@ -41,8 +42,10 @@
 </div>
 @code {
     IEnumerable<OrderWithStatus> ordersWithStatus;
-    
+
     protected override async Task OnInitializedAsync()
     {
-        ordersWithStatus = await HttpClient.GetFromJsonAsync<List<OrderWithStatus>>("orders");}
+        ordersWithStatus = await OrdersClient.GetOrders();
     }
+
+}

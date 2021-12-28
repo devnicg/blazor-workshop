@@ -45,5 +45,10 @@ namespace BlazingPizza.Client
         {
             Order.Pizzas.Remove(configuredPizza);
         }
+
+        public void ReplaceOrder(Order order)
+        {
+            Order = order;
+        }
     }
 }
